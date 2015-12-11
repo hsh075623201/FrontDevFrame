@@ -1,0 +1,28 @@
+<div class="container" style="width: 100%; max-width: 100%; padding-top: 0px;">
+	<div>
+		<button class="btn btn-primary">Subscribe</button>
+		<button class="btn btn-primary">Create</button>
+		<input type="search" class="form-control pull-right" style="width:200px;border-radius: 5px;" id="frm_groups_serch" name="search" ng-model="search"  autocomplete="off" placeholder="Search" />
+	</div>
+	<div>
+		<div class="row" style="margin:10px 0px 0px 0px">
+			<div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs" ng-click="tabClick($event)">
+                        <li class="" style="float:right"><a href="#frequent" data-toggle="tab" aria-expanded="true">Frequent</a></li>
+                        <li class="active" style="float:right"><a href="#daily" data-toggle="tab" aria-expanded="false">Daily</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="daily">
+                        	Daily
+		                </div>
+		                <!-- /.tab-pane -->
+		                <div class="tab-pane " id="frequent">
+		                    Frequent..
+		                </div>
+		                <!-- /.tab-pane -->
+            		</div>
+            		<!-- /.tab-content -->
+        		</div>
+		</div>
+	</div>
+</div>

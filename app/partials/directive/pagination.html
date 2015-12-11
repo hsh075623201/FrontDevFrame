@@ -1,0 +1,38 @@
+
+<div class="pull-right">
+    <div style="display: inline-block;">
+        <ul class="pagination" ng-show="conf.totalItems > 0">
+        <li ng-class="{disabled: conf.currentPage == 1}" ng-click="prevPage()"><span>&laquo;</span></li>
+        <li ng-repeat="item in pageList track by $index" ng-class="{active: item == conf.currentPage,separate: item == '...'}" ng-click="changeCurrentPage(item)">
+            <span>{{ item }}</span>
+        </li>
+        <li ng-class="{disabled: conf.currentPage == conf.numberOfPages}" ng-click="nextPage()"><span>&raquo;</span></li>
+    </ul>
+    </div>
+    <div style="display: inline-block;margin:20px">
+        <div class="page-total" ng-show="conf.totalItems > 0">
+        <!-- go:<input type="text" ng-model="jumpPageNum" ng-keyup="jumpToPage($event)" /> -->
+        <!-- <div class="input-group">
+          <input type="text" class="form-control" ng-model="jumpPageNum" placeholder="page number...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ng-keyup="jumpToPage($event)">Go!</button>
+          </span>
+        </div> -->
+        <div class="input-group" style="width:150px;float:left;margin-right:5px">
+          <span class="input-group-btn">
+            <button class="btn btn-default disabled" type="button">Go Page:</button>
+          </span>
+          <input style="width:50px" type="text" class="form-control" ng-model="jumpPageNum" ng-keyup="jumpToPage($event)" placeholder="">
+          <!-- <span class="input-group-btn">
+              <button class="btn btn-default disabled" type="button">page</button>
+          </span> -->
+        </div><!-- /input-group -->
+        <div class="input-group" style="width:150px">
+          <span class="input-group-btn">
+            <button class="btn btn-default disabled" type="button">Per Page:</button>
+          </span>
+          <select style="width:80px" class="form-control" ng-model="conf.itemsPerPage" ng-options="option for option in conf.perPageOptions "></select>
+        </div><!-- /input-group -->
+    </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="container" style="width: 100%; max-width: 100%; padding-top: 0px;">
+	<div>
+		<button class="btn btn-primary">Create</button>
+		<input type="search" class="form-control pull-right" style="width:200px;border-radius: 5px;" id="frm_groups_serch" name="search" ng-model="search"  autocomplete="off" placeholder="Search" />
+	</div>
+	<div ng-show="vm.state.load==0" class="loading">
+		<img src="/image/loading.gif" alt="loading..." >
+	</div>
+	<!-- <div id="grid1" ui-grid="vm.gridOptions" class="grid"  ui-grid-auto-resize ng-style="vm.actions.getTableHeight()" ></div> -->
+	<div ng-show="vm.state.load==1">
+		<table id="allrule" class="table table-bordered">
+			<thead><tr>
+				<th><a href="" ng-click="predicate = 'id'; reverse=!reverse; ">
+						<span class="thead_black">Rule ID</span>
+						<span><img ng-show="predicate != 'id' || reverse==null" src="/image/sort_all.png" style='width:9px;margin-bottom: 4px;margin-left: 4px;'></img></span>
+			  			<span><img ng-show="predicate == 'id' && reverse==true" src="/image/sort_desc.png" style='width:10px;margin-bottom: 4px;'></img></span>
+			  			<span><img ng-show="predicate == 'id' && reverse==false" src="/image/sort_asc.png" style='width:10px;margin-bottom: 4px;'></img></span>
+		  		</a></th>
+		  		<th><a href="" ng-click="predicate = 'sa_code'; reverse=!reverse; ">
+						<span class="thead_black">SA Code</span>
+						<span><img ng-show="predicate != 'sa_code' || reverse==null" src="/image/sort_all.png" style='width:9px;margin-bottom: 4px;margin-left: 4px;'></img></span>
+			  			<span><img ng-show="predicate == 'sa_code' && reverse==true" src="/image/sort_desc.png" style='width:10px;margin-bottom: 4px;'></img></span>
+			  			<span><img ng-show="predicate == 'sa_code' && reverse==false" src="/image/sort_asc.png" style='width:10px;margin-bottom: 4px;'></img></span>
+		  		</a></th>
+				<th><a href="" ng-click="predicate = 'table_name'; reverse=!reverse; ">
+						<span class="thead_black">Table Name</span>
+						<span><img ng-show="predicate != 'table_name' || reverse==null" src="/image/sort_all.png" style='width:9px;margin-bottom: 4px;margin-left: 4px;'></img></span>
+			  			<span><img ng-show="predicate == 'table_name' && reverse==true" src="/image/sort_desc.png" style='width:10px;margin-bottom: 4px;'></img></span>
+			  			<span><img ng-show="predicate == 'table_name' && reverse==false" src="/image/sort_asc.png" style='width:10px;margin-bottom: 4px;'></img></span>
+		  		</a></th>
+		  		<th  class="thead_black"><a>Platform</a></th>
+		  		<th><a href="" ng-click="predicate = 'checktype'; reverse=!reverse; ">
+						<span class="thead_black">Check Type</span>
+						<span><img ng-show="predicate != 'checktype' || reverse==null" src="/image/sort_all.png" style='width:9px;margin-bottom: 4px;margin-left: 4px;'></img></span>
+			  			<span><img ng-show="predicate == 'checktype' && reverse==true" src="/image/sort_desc.png" style='width:10px;margin-bottom: 4px;'></img></span>
+			  			<span><img ng-show="predicate == 'checktype' && reverse==false" src="/image/sort_asc.png" style='width:10px;margin-bottom: 4px;'></img></span>
+		  		</a></th>
+		  		<th><a href="" ng-click="predicate = 'schedule_type'; reverse=!reverse; ">
+						<span class="thead_black">Schedule Type</span>
+						<span><img ng-show="predicate != 'schedule_type' || reverse==null" src="/image/sort_all.png" style='width:9px;margin-bottom: 4px;margin-left: 4px;'></img></span>
+			  			<span><img ng-show="predicate == 'schedule_type' && reverse==true" src="/image/sort_desc.png" style='width:10px;margin-bottom: 4px;'></img></span>
+			  			<span><img ng-show="predicate == 'schedule_type' && reverse==false" src="/image/sort_asc.png" style='width:10px;margin-bottom: 4px;'></img></span>
+		  		</a></th>
+		  		<th  class="thead_black"><a>Owner</a></th>
+		  		<th><a href="" ng-click="predicate = 'status'; reverse=!reverse; ">
+						<span class="thead_black">Status</span>
+						<span><img ng-show="predicate != 'status' || reverse==null" src="/image/sort_all.png" style='width:9px;margin-bottom: 4px;margin-left: 4px;'></img></span>
+			  			<span><img ng-show="predicate == 'status' && reverse==true" src="/image/sort_desc.png" style='width:10px;margin-bottom: 4px;'></img></span>
+			  			<span><img ng-show="predicate == 'status' && reverse==false" src="/image/sort_asc.png" style='width:10px;margin-bottom: 4px;'></img></span>
+		  		</a></th>
+
+
+			</tr></thead>
+
+			<tr ng-repeat="entity in vm.ruleList">
+				<td style="max-width:50px;word-break: break-all;">{{entity.id}}</td>
+				<td style="max-width:100px;word-break: break-all;">{{entity.sa_code}}</td>
+				<td style="max-width:200px;word-break: break-all;"><span>{{entity.table_name}}</span></td>
+				<td style="max-width:200px;word-break: break-all;"><span ng-repeat="plat in entity.platform" style="margin-left:10px;" class="label label-primary">{{plat}}</span></td>
+				<td>{{entity.checktype}}</td>
+				<td>{{entity.scheduletype}}</td>
+				<td style="max-width:150px;word-break: break-word;">{{entity.owner}}</td>
+				<td>{{entity.status}}</td>
+			</tr>
+		</table>
+	</div>
+
+	<div ng-show="vm.data.length>0" class="t_center">
+		<m-pagination ng-if="vm.data.length>0" conf="vm.paginationConf"></m-pagination>
+	</div>
+
+</div>
