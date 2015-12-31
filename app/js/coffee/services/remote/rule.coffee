@@ -7,7 +7,10 @@ App.factory 'RuleRemoteService', (Restangular, BaseRemoteService) ->
 
     getAllRules: (param)->
       @doQuery 'get_all_rules', param
-
+    
+    save:(param)->
+      @doPost 'save',param
+    
     queryWithCanceler: (param, canceler)->
       @doQuery 'test2', param, canceler
 
