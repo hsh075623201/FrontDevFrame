@@ -20,6 +20,12 @@ App.factory 'BaseRemoteService', (Config, Restangular, Util, $q, $timeout) ->
         @rest.one(method).withHttpConfig(config).get param
       else
         @rest.one(method).get param
+    doPost: (method, param, canceler) ->
+      if canceler && canceler.promise
+        config = {timeout: canceler.promise}
+        @rest.all(method).withHttpConfig(config).post param
+      else
+        @rest.all(method).post param
 
     doQueryWithCache: (method, param, canceler, timeout=300) ->
       @getWithCache method, param, =>
